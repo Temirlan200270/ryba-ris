@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Рыба & Рис
 
-## Getting Started
+Лендинг суши-бара с меню, корзиной и оформлением заказа через WhatsApp. Статический контент, без серверной БД.
 
-First, run the development server:
+## Возможности
+
+- Адаптивная вёрстка (мобильные и десктоп)
+- Каталог блюд по категориям
+- Корзина с подсчётом суммы (состояние в браузере)
+- Отправка заказа в WhatsApp одной кнопкой
+- Быстрый звонок и ссылка на мессенджер
+
+## Стек
+
+- [Next.js](https://nextjs.org) 16 (App Router)
+- React 19, TypeScript
+- Tailwind CSS 4, shadcn/ui
+- Zustand (корзина)
+- Framer Motion
+
+## Требования
+
+- Node.js 20+
+- npm, pnpm, yarn или bun
+
+## Локальный запуск
 
 ```bash
+# установка зависимостей
+npm install
+
+# режим разработки
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Сайт откроется на [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Сборка и продакшен локально
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+Проверка линтера:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Настройка контактов
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Телефон и номер WhatsApp задаются в `src/lib/contact.ts`. Меню — в `src/data/menu.ts`.
 
-## Deploy on Vercel
+## Структура проекта
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/              # страницы и глобальные стили
+├── components/
+│   ├── blocks/       # секции лендинга
+│   ├── shared/       # корзина, карточки товаров
+│   └── ui/           # UI-компоненты
+├── data/             # меню
+├── lib/              # контакты, форматирование, WhatsApp
+└── store/            # состояние корзины
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Деплой
+
+Для этого проекта оптимален **[Vercel](https://vercel.com)**:
+
+- создатели Next.js, деплой без дополнительной настройки;
+- бесплатный тариф для небольших сайтов;
+- превью на каждый push в Git;
+- CDN и HTTPS из коробки.
+
+**Как задеплоить на Vercel**
+
+1. Залейте репозиторий на GitHub / GitLab / Bitbucket.
+2. Зайдите на [vercel.com/new](https://vercel.com/new), импортируйте репозиторий.
+3. Framework Preset: **Next.js** (определится автоматически).
+4. Переменные окружения не нужны — нажмите **Deploy**.
+
+После деплоя можно привязать свой домен в настройках проекта.
+
+### Альтернативы
+
+| Платформа | Когда имеет смысл |
+|-----------|-------------------|
+| [Netlify](https://www.netlify.com) | привычный интерфейс, хорош для Next.js |
+| [Cloudflare Pages](https://pages.cloudflare.com) | дешёвый CDN, если уже на Cloudflare |
+| VPS (Timeweb, Selectel, Hetzner) | полный контроль, но нужен Docker/PM2 и администрирование |
+
+Для лендинга без API и базы данных Vercel или Netlify — самый простой и надёжный вариант; VPS оправдан только при особых требованиях к хостингу в РФ или кастомной инфраструктуре.
+
+## Лицензия
+
+Приватный проект.
